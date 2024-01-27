@@ -16,6 +16,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 class HtmlViewerScreen extends StatefulWidget {
   final HtmlType htmlType;
+
   const HtmlViewerScreen({Key? key, required this.htmlType}) : super(key: key);
 
   @override
@@ -107,22 +108,32 @@ class _HtmlViewerScreenState extends State<HtmlViewerScreen> {
                                         mode: LaunchMode.externalApplication);
                                   },
                                 )
-                              : SelectableHtml(
-                                  data: splashController.htmlText,
-                                  shrinkWrap: true,
-                                  onLinkTap: (String? url,
-                                      RenderContext context,
-                                      Map<String, String> attributes,
-                                      element) {
-                                    if (url!.startsWith('www.')) {
-                                      url = 'https://$url';
-                                    }
-                                    if (kDebugMode) {
-                                      print('Redirect to url: $url');
-                                    }
-                                    html.window.open(url, "_blank");
+                              //TODO: temporarily hide because of error in selectableHtml
+                              // : SelectableHtml(
+                              //     data: splashController.htmlText,
+                              //     shrinkWrap: true,
+                              //     onLinkTap: (String? url,
+                              //         RenderContext context,
+                              //         Map<String, String> attributes,
+                              //         element) {
+                              //       if (url!.startsWith('www.')) {
+                              //         url = 'https://$url';
+                              //       }
+                              //       if (kDebugMode) {
+                              //         print('Redirect to url: $url');
+                              //       }
+                              //       html.window.open(url, "_blank");
+                              //     },
+                              //   ),
+                              : HtmlWidget(
+                                  splashController.htmlText ?? '',
+                                  key: Key(widget.htmlType.toString()),
+                                  isSelectable: true,
+                                  onTapUrl: (String url) {
+                                    return launchUrlString(url,
+                                        mode: LaunchMode.externalApplication);
                                   },
-                                ),
+                                )
                         ]),
                   )),
                 )

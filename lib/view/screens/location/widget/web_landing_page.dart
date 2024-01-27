@@ -457,7 +457,6 @@ class _WebLandingPageState extends State<WebLandingPage> {
                                                           '',
                                                       shrinkWrap: true,
                                                       onLinkTap: (String? url,
-                                                          RenderContext context,
                                                           Map<String, String>
                                                               attributes,
                                                           element) {
@@ -512,7 +511,7 @@ class _WebLandingPageState extends State<WebLandingPage> {
                                                 itemBuilder: (context, index) {
                                                   return Padding(
                                                     padding: const EdgeInsets
-                                                            .only(
+                                                        .only(
                                                         right: Dimensions
                                                             .paddingSizeLarge),
                                                     child: Column(children: [

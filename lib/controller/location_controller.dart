@@ -31,26 +31,33 @@ import 'package:sixam_mart/view/screens/location/widget/permission_dialog.dart';
 
 class LocationController extends GetxController implements GetxService {
   final LocationRepo locationRepo;
+
   LocationController({required this.locationRepo});
 
   Position _position = Position(
-      longitude: 0,
-      latitude: 0,
-      timestamp: DateTime.now(),
-      accuracy: 1,
-      altitude: 1,
-      heading: 1,
-      speed: 1,
-      speedAccuracy: 1);
+    longitude: 0,
+    latitude: 0,
+    timestamp: DateTime.now(),
+    accuracy: 1,
+    altitude: 1,
+    heading: 1,
+    speed: 1,
+    speedAccuracy: 1,
+    altitudeAccuracy: 0,
+    headingAccuracy: 0,
+  );
   Position _pickPosition = Position(
-      longitude: 0,
-      latitude: 0,
-      timestamp: DateTime.now(),
-      accuracy: 1,
-      altitude: 1,
-      heading: 1,
-      speed: 1,
-      speedAccuracy: 1);
+    longitude: 0,
+    latitude: 0,
+    timestamp: DateTime.now(),
+    accuracy: 1,
+    altitude: 1,
+    heading: 1,
+    speed: 1,
+    speedAccuracy: 1,
+    altitudeAccuracy: 0,
+    headingAccuracy: 0,
+  );
   bool _loading = false;
   String? _address = '';
   String? _pickAddress = '';
@@ -70,20 +77,35 @@ class LocationController extends GetxController implements GetxService {
   bool _showLocationSuggestion = true;
 
   List<PredictionModel> get predictionList => _predictionList;
+
   bool get isLoading => _isLoading;
+
   bool get loading => _loading;
+
   Position get position => _position;
+
   Position get pickPosition => _pickPosition;
+
   String? get address => _address;
+
   String? get pickAddress => _pickAddress;
+
   List<Marker> get markers => _markers;
+
   List<AddressModel>? get addressList => _addressList;
+
   List<String?> get addressTypeList => _addressTypeList;
+
   int get addressTypeIndex => _addressTypeIndex;
+
   bool get inZone => _inZone;
+
   int get zoneID => _zoneID;
+
   bool get buttonDisabled => _buttonDisabled;
+
   bool get showLocationSuggestion => _showLocationSuggestion;
+
   GoogleMapController? get mapController => _mapController;
 
   void hideSuggestedLocation() {
@@ -121,6 +143,8 @@ class LocationController extends GetxController implements GetxService {
                     .lng ??
                 '0'),
         timestamp: DateTime.now(),
+        altitudeAccuracy: 0,
+        headingAccuracy: 0,
         accuracy: 1,
         altitude: 1,
         heading: 1,
@@ -245,6 +269,8 @@ class LocationController extends GetxController implements GetxService {
             heading: 1,
             accuracy: 1,
             altitude: 1,
+            altitudeAccuracy: 0,
+            headingAccuracy: 0,
             speedAccuracy: 1,
             speed: 1,
           );
@@ -255,6 +281,8 @@ class LocationController extends GetxController implements GetxService {
             timestamp: DateTime.now(),
             heading: 1,
             accuracy: 1,
+            altitudeAccuracy: 0,
+            headingAccuracy: 0,
             altitude: 1,
             speedAccuracy: 1,
             speed: 1,
@@ -543,6 +571,8 @@ class LocationController extends GetxController implements GetxService {
       latitude: latLng.latitude,
       longitude: latLng.longitude,
       timestamp: DateTime.now(),
+      altitudeAccuracy: 0,
+      headingAccuracy: 0,
       accuracy: 1,
       altitude: 1,
       heading: 1,
@@ -585,6 +615,8 @@ class LocationController extends GetxController implements GetxService {
       latitude: double.parse(address.latitude!),
       longitude: double.parse(address.longitude!),
       timestamp: DateTime.now(),
+      altitudeAccuracy: 0,
+      headingAccuracy: 0,
       altitude: 1,
       heading: 1,
       speed: 1,
